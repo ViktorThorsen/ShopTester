@@ -4,7 +4,7 @@
 		"name": "ShopTester-testflows",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43555422",
-		"_collection_link": "https://viktor-6544461.postman.co/workspace/bb0aa7aa-6dad-4862-8045-1d577490deb5/collection/43555422-c51e523e-5556-4928-ac8c-facb059c31f2?action=share&source=collection_link&creator=43555422"
+		"_collection_link": "https://viktor-6544461.postman.co/workspace/Viktor's-Workspace~bb0aa7aa-6dad-4862-8045-1d577490deb5/collection/43555422-c51e523e-5556-4928-ac8c-facb059c31f2?action=share&source=collection_link&creator=43555422"
 	},
 	"item": [
 		{
@@ -395,39 +395,39 @@
 					"response": []
 				},
 				{
-						"name": "TestFlow_CreateOrder",
-						"event": [
-							{
+					"name": "TestFlow_CreateOrder",
+					"event": [
+						{
 							"listen": "test",
 							"script": {
 								"exec": [
-								"pm.test(\"Have response 200\", function () {",
-								"    pm.response.to.have.status(200);",
-								"});",
-								"",
-								"pm.test(\"Order Id added\", function () {",
-								"    const jsonData = pm.response.json();",
-								"    pm.environment.set(\"order_id\", jsonData.id);",
-								"});"
+									"pm.test(\"Have response 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Order Id added\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"order_id\", jsonData.insertId);\r",
+									"})"
 								],
 								"type": "text/javascript",
 								"packages": {}
 							}
-							}
-						],
-						"request": {
-							"method": "POST",
-							"header": [],
-							"body": {
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"productId\": {{product_to_order_id}},\r\n    \"quantity\": 4\r\n}",
 							"options": {
 								"raw": {
-								"language": "json"
+									"language": "json"
 								}
 							}
-							},
-							"url": {
+						},
+						"url": {
 							"raw": "{{base_url}}/api/orders",
 							"host": [
 								"{{base_url}}"
@@ -436,9 +436,9 @@
 								"api",
 								"orders"
 							]
-							}
-						},
-						"response": []
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "TestFlow_GetOrder",
