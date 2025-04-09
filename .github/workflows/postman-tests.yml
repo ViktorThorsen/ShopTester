@@ -26,4 +26,5 @@ jobs:
         run: |
           newman run postman/ShopTester-testflows.postman_collection.json \
           --environment postman/shoptester.postman_environment.json \
-          --reporters cli,github
+          --reporters cli,github \
+          --reporter-json-export newman-report.json
