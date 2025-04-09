@@ -7,34 +7,36 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  api_tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: "latest"
+          node-version: "22"
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
 
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Install backend dependencies
+      - name: Install dotnet project dependencies
         run: dotnet restore
-        working-directory: server
 
-      - name: Build backend
-        run: dotnet build --configuration Release
-        working-directory: server
+      - name: Build project
+        run: dotnet build
 
       - name: Start API-server
-        run: dotnet run &
-        working-directory: server
+        run: cd server && nohup dotnet run &
 
-      - name: Wait for server to start
+      - name: Wait for API to start
         run: sleep 5
 
       - name: Run API tests with Newman
