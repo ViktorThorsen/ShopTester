@@ -395,34 +395,39 @@
 					"response": []
 				},
 				{
-					"name": "TestFlow_CreateOrder",
-					"event": [
-						{
+						"name": "TestFlow_CreateOrder",
+						"event": [
+							{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Have response 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
+								"pm.test(\"Have response 200\", function () {",
+								"    pm.response.to.have.status(200);",
+								"});",
+								"",
+								"pm.test(\"Order Id added\", function () {",
+								"    const jsonData = pm.response.json();",
+								"    pm.environment.set(\"order_id\", jsonData.id);",
+								"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
 							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
+							}
+						],
+						"request": {
+							"method": "POST",
+							"header": [],
+							"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"productId\": {{product_to_order_id}},\r\n    \"quantity\": 4\r\n}",
 							"options": {
 								"raw": {
-									"language": "json"
+								"language": "json"
 								}
 							}
-						},
-						"url": {
+							},
+							"url": {
 							"raw": "{{base_url}}/api/orders",
 							"host": [
 								"{{base_url}}"
@@ -431,9 +436,9 @@
 								"api",
 								"orders"
 							]
-						}
-					},
-					"response": []
+							}
+						},
+						"response": []
 				},
 				{
 					"name": "TestFlow_GetOrder",
