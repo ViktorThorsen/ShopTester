@@ -22,6 +22,24 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
+      - name: Install Newman GitHub reporter
+        run: npm install -g newman-reporter-github
+
+      - name: Install backend dependencies
+        run: dotnet restore
+        working-directory: server
+
+      - name: Build backend
+        run: dotnet build --configuration Release
+        working-directory: server
+
+      - name: Start API-server
+        run: dotnet run &
+        working-directory: server
+
+      - name: Wait for server to start
+        run: sleep 5
+
       - name: Run API tests with Newman
         run: |
           newman run postman/ShopTester-testflows.postman_collection.json \
