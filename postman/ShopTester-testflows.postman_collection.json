@@ -286,7 +286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Email\": \"hejhej@gmail.com\",\r\n    \"Password\": \"asd123\"\r\n}",
+							"raw": "{\r\n    \"Email\": \"john@email.com\",\r\n    \"Password\": \"john123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
