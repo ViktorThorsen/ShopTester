@@ -22,9 +22,6 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Install Newman GitHub reporter
-        run: npm install -g newman-reporter-github
-
       - name: Install backend dependencies
         run: dotnet restore
         working-directory: server
